@@ -12,9 +12,8 @@ program/summary_report.csv
 program/invalid_export.csv
 
 # Generated reports
-report/*.docx
-!report/template.docx
 *.docx
+!report/template.docx
 
 # Submission archives
 *.zip

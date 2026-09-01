@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Generated runtime outputs
+program/summary_report.csv
+program/invalid_export.csv
+
+# Generated reports
+report/*.docx
+*.docx
+
+# Submission archives
+*.zip
+
+# Assignment PDF (md spec is tracked)
+*.pdf
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Cursor
+.cursor/

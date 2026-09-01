@@ -1,0 +1,25 @@
+{
+  "high_value_threshold": 5000,
+  "declined_count_threshold": 4,
+  "location_count_threshold": 3,
+  "time_window_minutes": 30,
+  "declined_in_window_threshold": 4,
+  "rules": {
+    "high_value": {
+      "name": "High-Value Transactions",
+      "severity": "HIGH"
+    },
+    "repeated_declined": {
+      "name": "Repeated Declined Transactions",
+      "severity": "MEDIUM"
+    },
+    "multiple_locations": {
+      "name": "Multiple Locations",
+      "severity": "MEDIUM"
+    },
+    "time_based_declined": {
+      "name": "Time-Based Declined Burst",
+      "severity": "HIGH"
+    }
+  }
+}

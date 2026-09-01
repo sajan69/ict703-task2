@@ -29,6 +29,8 @@ from reporter import export_summary_csv, generate_summary
 from storage import TransactionStore
 from validator import export_invalid_records, validate_all_lines, validate_record
 
+os.chdir(Path(__file__).resolve().parent)
+
 
 def print_test_result(feature, test_input, expected, actual, passed):
     """Print a formatted test result line."""

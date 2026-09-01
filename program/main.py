@@ -5,6 +5,9 @@ Reads transaction files, validates records, detects suspicious activity,
 and generates summary reports.
 """
 
+import os
+from pathlib import Path
+
 from config_loader import load_config
 from file_handler import read_transaction_file
 from fraud_detector import run_all_detections
@@ -59,6 +62,7 @@ def process_transactions(transaction_file="transactions.txt", config_file="confi
 
 def main():
     """Main program entry point."""
+    os.chdir(Path(__file__).resolve().parent)
     process_transactions()
 
 

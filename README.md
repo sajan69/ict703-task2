@@ -26,6 +26,9 @@ A Python application that reads fictional bank transaction records, validates th
 ```
 Task 2/
 ├── README.md
+├── pyproject.toml              # uv project config (report deps only)
+├── uv.lock                     # Locked dependencies
+├── .python-version             # Python version for uv
 ├── ICT703-Task2-TaskDescriptionandRequirements.md
 ├── program/                    # Python submission (ZIP this folder)
 │   ├── main.py                 # Entry point
@@ -46,34 +49,59 @@ Task 2/
 ## Requirements
 
 - **Python 3.10+**
-- **Program:** Python Standard Library only (no pip install needed)
-- **Report generator:** `python-docx` (`pip install python-docx`)
+- **[uv](https://docs.astral.sh/uv/getting-started/installation/)** — Python package and project manager
+- **Program:** Python Standard Library only (no extra packages)
+- **Report generator:** `python-docx` (installed via uv report dependency group)
+
+## Setup
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then from the project root:
+
+```powershell
+cd "Task 2"
+uv sync
+```
+
+This creates a `.venv/` virtual environment. The program runs with no extra dependencies.
+
+To install report dependencies (only needed for Word doc generation):
+
+```powershell
+uv sync --group report
+```
 
 ## Quick Start
 
 ### Run the fraud detection program
 
 ```powershell
-cd program
-python main.py
+uv run python program/main.py
 ```
 
 ### Run the test suite
 
 ```powershell
-cd program
-python test.py
+uv run python program/test.py
 ```
 
 Expected output: **22/22 tests pass**.
 
+You can also run directly from `program/` with system Python (no uv required):
+
+```powershell
+cd program
+python main.py
+python test.py
+```
+
 ### Generate the Word report
 
 ```powershell
-cd report
-pip install python-docx
-python generate_report.py "Your Full Name"
+uv sync --group report
+uv run --group report python report/generate_report.py
 ```
+
+This generates `report/Sajan Adhikari - Task 2.docx` with student details pre-filled.
 
 ## Configuration
 
@@ -143,22 +171,23 @@ Each test prints: feature, input, expected, actual, and PASS/FAIL outcome.
 
 Submit **two files** to Canvas:
 
-1. **Word report:** `report/<YourName> - Task 2.docx`
-2. **Python ZIP:** Contents of `program/` folder
+1. **Word report:** `report/Sajan Adhikari - Task 2.docx`
+2. **Python ZIP:** Contents of `program/` folder only
 
 To create the ZIP:
 
 ```powershell
 cd program
-Compress-Archive -Path * -DestinationPath "../YourName - Task 2.zip"
+Compress-Archive -Path * -DestinationPath "../Sajan Adhikari - Task 2.zip"
 ```
 
-Ensure `main.py` is at the ZIP root, not inside a subfolder.
+Ensure `main.py` is at the ZIP root, not inside a subfolder. Do **not** include `pyproject.toml`, `uv.lock`, or the `report/` folder in the ZIP.
 
 ## Author
 
-- **Student Name:** [Your Name]
-- **Student ID:** [Your ID]
+- **Student Name:** Sajan Adhikari
+- **Student ID:** s_a325
+- **Tutor:** Tianwa Chen
 - **Course:** ICT703 Programming — 2026 Trimester 2
 
 ## License

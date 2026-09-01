@@ -1,0 +1,12 @@
+[project]
+name = "ict703-task2"
+version = "1.0.0"
+description = "Bank Transaction Fraud Detection System - ICT703 Task 2"
+requires-python = ">=3.10"
+dependencies = []
+
+[dependency-groups]
+report = ["python-docx>=1.1.0"]
+
+[tool.uv]
+default-groups = []

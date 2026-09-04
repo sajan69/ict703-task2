@@ -13,7 +13,6 @@ program/invalid_export.csv
 
 # Generated reports
 *.docx
-!report/template.docx
 
 # Submission archives
 *.zip

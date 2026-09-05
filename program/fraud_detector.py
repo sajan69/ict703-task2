@@ -158,8 +158,10 @@ def detect_time_based_declined(by_account, config):
         flagged = False
         flagged_ids = set()
 
+        # Scan each declined transaction as a window start point.
         for index, start_txn in enumerate(declined):
             window_end = start_txn["timestamp"] + timedelta(minutes=window_minutes)
+            # Count declines from this start time up to the window end.
             window_txns = [
                 txn
                 for txn in declined[index:]

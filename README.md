@@ -26,24 +26,21 @@ A Python application that reads fictional bank transaction records, validates th
 ```
 Task 2/
 ├── README.md
-├── pyproject.toml              # uv project config (report deps only)
+├── pyproject.toml              # uv project config
 ├── uv.lock                     # Locked dependencies
 ├── .python-version             # Python version for uv
-├── ICT703-Task2-TaskDescriptionandRequirements.md
-├── program/                    # Python submission (ZIP this folder)
-│   ├── main.py                 # Entry point
-│   ├── file_handler.py         # File reading and error handling
-│   ├── validator.py            # Core + enhanced validation
-│   ├── storage.py              # Transaction storage (list + dict)
-│   ├── fraud_detector.py       # Fraud detection rules 1–4
-│   ├── config_loader.py        # JSON configuration loader
-│   ├── reporter.py             # Alerts, summary, CSV export
-│   ├── config.json             # Configurable fraud thresholds
-│   ├── transactions.txt        # Sample transaction dataset
-│   ├── transactions_empty.txt  # Empty file for testing
-│   └── test.py                 # Automated test suite (22 tests)
-└── report/                     # Word report (separate submission)
-    └── generate_report.py      # Generates .docx report
+└── program/                    # Python submission (ZIP this folder)
+    ├── main.py                 # Entry point
+    ├── file_handler.py         # File reading and error handling
+    ├── validator.py            # Core + enhanced validation
+    ├── storage.py              # Transaction storage (list + dict)
+    ├── fraud_detector.py       # Fraud detection rules 1–4
+    ├── config_loader.py        # JSON configuration loader
+    ├── reporter.py             # Alerts, summary, CSV export
+    ├── config.json             # Configurable fraud thresholds
+    ├── transactions.txt        # Sample transaction dataset
+    ├── transactions_empty.txt  # Empty file for testing
+    └── test.py                 # Automated test suite (22 tests)
 ```
 
 ## Requirements
@@ -51,7 +48,6 @@ Task 2/
 - **Python 3.10+**
 - **[uv](https://docs.astral.sh/uv/getting-started/installation/)** — Python package and project manager
 - **Program:** Python Standard Library only (no extra packages)
-- **Report generator:** `python-docx` (installed via uv report dependency group)
 
 ## Setup
 
@@ -63,12 +59,6 @@ uv sync
 ```
 
 This creates a `.venv/` virtual environment. The program runs with no extra dependencies.
-
-To install report dependencies (only needed for Word doc generation):
-
-```powershell
-uv sync --group report
-```
 
 ## Quick Start
 
@@ -93,15 +83,6 @@ cd program
 python main.py
 python test.py
 ```
-
-### Generate the Word report
-
-```powershell
-uv sync --group report
-uv run --group report python report/generate_report.py
-```
-
-This generates `report/Sajan Adhikari - Task 2.docx` with student details pre-filled.
 
 ## Configuration
 
@@ -169,10 +150,7 @@ Each test prints: feature, input, expected, actual, and PASS/FAIL outcome.
 
 ## Canvas Submission
 
-Submit **two files** to Canvas:
-
-1. **Word report:** `report/Sajan Adhikari - Task 2.docx`
-2. **Python ZIP:** Contents of `program/` folder only
+Submit the **Python ZIP** to Canvas: contents of the `program/` folder only.
 
 To create the ZIP:
 
@@ -181,7 +159,7 @@ cd program
 Compress-Archive -Path * -DestinationPath "../Sajan Adhikari - Task 2.zip"
 ```
 
-Ensure `main.py` is at the ZIP root, not inside a subfolder. Do **not** include `pyproject.toml`, `uv.lock`, or the `report/` folder in the ZIP.
+Ensure `main.py` is at the ZIP root, not inside a subfolder. Do **not** include `pyproject.toml` or `uv.lock` in the ZIP.
 
 ## Author
 
@@ -189,6 +167,7 @@ Ensure `main.py` is at the ZIP root, not inside a subfolder. Do **not** include 
 - **Student ID:** s_a325
 - **Tutor:** Tianwa Chen
 - **Course:** ICT703 Programming — 2026 Trimester 2
+- **GitHub Repository:** https://github.com/sajan69/ict703-task2
 
 ## License
 

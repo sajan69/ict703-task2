@@ -14,10 +14,14 @@ program/invalid_export.csv
 # Generated reports
 *.docx
 
+# Local-only (not in GitHub repo)
+report/
+ICT703-Task2-TaskDescriptionandRequirements.md
+
 # Submission archives
 *.zip
 
-# Assignment PDF (md spec is tracked)
+# Assignment PDF
 *.pdf
 
 # IDE / OS

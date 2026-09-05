@@ -59,13 +59,25 @@ def validate_record(line, line_number, seen_transaction_ids, seen_record_keys):
             f"Incorrect number of fields (expected 7, found {len(parts)})",
         )
 
-    timestamp_str, transaction_id, account_id, transaction_type, amount_str, location, status = parts
+    (
+        timestamp_str,
+        transaction_id,
+        account_id,
+        transaction_type,
+        amount_str,
+        location,
+        status,
+    ) = parts
 
     if not transaction_id:
-        return None, _make_invalid(line_number, "transaction_id", transaction_id, "Transaction ID is empty")
+        return None, _make_invalid(
+            line_number, "transaction_id", transaction_id, "Transaction ID is empty"
+        )
 
     if not account_id:
-        return None, _make_invalid(line_number, "account_id", account_id, "Account ID is empty")
+        return None, _make_invalid(
+            line_number, "account_id", account_id, "Account ID is empty"
+        )
 
     if not TIMESTAMP_PATTERN.match(timestamp_str):
         return None, _make_invalid(
@@ -157,7 +169,6 @@ def validate_record(line, line_number, seen_transaction_ids, seen_record_keys):
     record_key = "|".join(
         [
             timestamp_str,
-            transaction_id,
             account_id,
             transaction_type,
             f"{amount:.2f}",
@@ -165,6 +176,7 @@ def validate_record(line, line_number, seen_transaction_ids, seen_record_keys):
             status,
         ]
     )
+    # Reject identical records even when transaction IDs differ.
     if record_key in seen_record_keys:
         return None, _make_invalid(
             line_number,

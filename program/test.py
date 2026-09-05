@@ -199,6 +199,36 @@ class TestValidator(unittest.TestCase):
         )
         self.assertIsNotNone(invalid)
 
+    def test_duplicate_full_record(self):
+        line1 = "2026-07-11 09:15:23 | T3002 | A10025 | TRANSFER | 100.00 | Brisbane | APPROVED"
+        line2 = "2026-07-11 09:15:23 | T3003 | A10025 | TRANSFER | 100.00 | Brisbane | APPROVED"
+        validate_record(line1, 1, self.seen_ids, self.seen_keys)
+        txn, invalid = validate_record(line2, 2, self.seen_ids, self.seen_keys)
+        passed = invalid is not None and "Duplicate transaction record" in invalid["reason"]
+        print_test_result(
+            "Reject duplicate full record",
+            "Identical fields, different ID",
+            "Duplicate transaction record error",
+            invalid["reason"] if invalid else "None",
+            passed,
+        )
+        self.assertIsNone(txn)
+        self.assertIsNotNone(invalid)
+
+    def test_whitespace_trimmed(self):
+        line = " 2026-07-11 09:15:23 | T3004 | A10025 | TRANSFER | 100.00 | Brisbane | APPROVED "
+        txn, invalid = validate_record(line, 1, self.seen_ids, self.seen_keys)
+        passed = txn is not None and invalid is None
+        print_test_result(
+            "Accept trimmed whitespace",
+            "Leading/trailing spaces",
+            "Valid transaction returned",
+            f"txn_id={txn['transaction_id'] if txn else None}",
+            passed,
+        )
+        self.assertIsNotNone(txn)
+        self.assertIsNone(invalid)
+
 
 class TestFraudDetection(unittest.TestCase):
     """Tests for fraud detection rules."""
